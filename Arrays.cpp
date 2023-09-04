@@ -1,10 +1,16 @@
 #include "Arrays.h"
 #include <stdio.h>
 
-void print_data (const char data[][MAX_LEN_STR], unsigned int nums) {
+void print_data(const char data[][MAX_LEN_STR], unsigned int nums) {
     for(unsigned int i = 0; i < nums; i++) {
         puts(data[i]);
     }
+}
+
+void print_data_int(const int data[], unsigned int nums) {
+    for(unsigned int i = 0; i < nums; i++)
+        printf("%d ", data[i]);
+    printf("\n");
 }
 
 void read_data_from_file(char data[][MAX_LEN_STR], FILE *fp) {
@@ -12,6 +18,7 @@ void read_data_from_file(char data[][MAX_LEN_STR], FILE *fp) {
     while(fgets(data[i], MAX_LEN_STR, fp) != NULL)
         i++;
 }
+
 void print_data_as_line(const char data [], unsigned int raws, unsigned int cols) {
     for(unsigned int i = 0; i < raws; i++) {
         for(unsigned int j = 0; j < cols; j++)
@@ -42,5 +49,16 @@ void read_data_as_triangle_from_file (int data[], unsigned int raws, FILE *fp) {
             fscanf(fp, "%d", &*(data + next + j));
         next += cols;
         cols = cols + 1;
+    }
+}
+
+void print_special_data(int *data) {
+    size_t x = *data;
+    size_t y = *(data + 1);
+
+    for(unsigned int i = 0; i < x; i++) {
+        for(unsigned int j = 0; j < y; j++)
+            printf("%d ", *(data + i * x + j + 2));
+        printf("\n");
     }
 }
