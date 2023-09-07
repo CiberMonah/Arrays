@@ -1,9 +1,12 @@
 #include "Arrays.h"
 #include <stdio.h>
 
-void print_data(const char data[][MAX_LEN_STR], unsigned int nums) {
-    for(unsigned int i = 0; i < nums; i++) {
-        puts(data[i]);
+void print_text(const char data[][MAX_LEN_STR], size_t x) {
+    assert(data != NULL);
+
+    for(size_t i = 0; i < x; i++) {
+        printf("%p : \n", data[i]);
+        printf("%s", (data[i]));
     }
 }
 
@@ -13,7 +16,7 @@ void print_data_int(const int data[], unsigned int nums) {
     printf("\n");
 }
 
-void read_data_from_file(char data[][MAX_LEN_STR], FILE *fp) {
+void read_data_from_file(char data[][MAX_LEN_STR], FILE* fp) {
     unsigned int i = 0;
     while(fgets(data[i], MAX_LEN_STR, fp) != NULL)
         i++;
@@ -40,7 +43,7 @@ void print_data_as_triangle(const int data[], unsigned int raws) {
     }
 }
 
-void read_data_as_triangle_from_file (int data[], unsigned int raws, FILE *fp) {
+void read_data_as_triangle_from_file (int data[], unsigned int raws, FILE* fp) {
     unsigned int cols = 1;
     unsigned int next = 0;
 
@@ -61,4 +64,14 @@ void print_special_data(int *data) {
             printf("%d ", *(data + i * x + j + 2));
         printf("\n");
     }
+}
+
+size_t read_text_from_file_rect(char text[][MAX_LEN_STR], FILE* fp) {
+    size_t x, y;
+
+    fscanf(fp, "%d %d\n", &x, &y);
+
+    for(size_t i = 0; i < x; i++)
+        fgets(text[i], y, fp);
+    return x;
 }

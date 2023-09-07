@@ -1,14 +1,19 @@
-#include <iostream>
+#include <stdio.h>
 #include "Arrays.h"
 
-using namespace std;
 
 int main()
 {
-    int data[] = {3, 5,
-                  11, 12, 13, 14, 15,
-                  21, 22, 23, 24, 25,
-                  31, 32, 33, 34, 35};
-    print_special_data(data);
-    print_data_int(data + 2, sizeof(data) / sizeof(int) - 2);
+    char text[][MAX_LEN_STR] = {};
+
+    FILE *fp;
+
+    if ((fp = fopen("rect.txt", "r")) == NULL) {
+        printf("File didnt open");
+        getchar();
+        return 0;
+    }
+    //printf("%s", read_text_from_file_rect(text, fp));
+    print_text(text, read_text_from_file_rect(text, fp));
+
 }
