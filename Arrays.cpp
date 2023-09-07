@@ -1,5 +1,6 @@
 #include "Arrays.h"
 #include <stdio.h>
+#define LOX(value, i) printf("string %d : %p\n", i, value);
 
 void print_text(const char data[][MAX_LEN_STR], size_t x) {
     assert(data != NULL);
@@ -74,4 +75,47 @@ size_t read_text_from_file_rect(char text[][MAX_LEN_STR], FILE* fp) {
     for(size_t i = 0; i < x; i++)
         fgets(text[i], y, fp);
     return x;
+}
+
+char** read_dinamic_text_from_file(char** text, int N_lines, FILE *fp) {
+    char str[50] = "";
+
+    for(int i = 0; i < N_lines; i++) {
+        fgets(str, MAX_LEN_STR, fp);
+        text[i] = strdup(str);
+    }
+    return text;
+}
+
+void free_text(char** text, int N_lines) {
+    for(int i = 0; i < N_lines; i++) {
+        free(text[i]);
+    }
+    free(text);
+}
+
+int count_lines(FILE *fp) {
+    int counter = 0;
+    int c;
+
+    for (c = getc(fp); c != EOF; c = getc(fp))
+        if (c == '\n')
+            counter++;
+    return counter + 1;
+}
+
+void print_text_updated(char** text, int N_lines) {
+    for(int i = 0; i < N_lines; i++) {
+        assert(text[i] != NULL);
+        printf("%s", text[i]);
+    }
+}
+
+char* my_str_dup(const char *str) {
+    size_t i = strlen(str);
+    char* dup = (char*)calloc(i, sizeof(char));
+    for (i = 0; str[i] != '\0'; i++)
+        dup[i] = str[i];
+
+    return dup;
 }

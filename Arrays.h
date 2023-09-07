@@ -2,6 +2,7 @@
 #define ARRAYS_H_INCLUDED
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <cstdio>
 #include <assert.h>
 
@@ -15,6 +16,12 @@ void print_data_as_triangle(const int data [], unsigned int raws);
 void read_data_as_triangle_from_file (int data[], unsigned int raws, FILE *fp);
 void read_data_from_file(char data[][MAX_LEN_STR], FILE *fp);
 size_t read_text_from_file_rect(char text[][MAX_LEN_STR], FILE* fp);
+char** read_dinamic_text_from_file(char** text, int N_lines, FILE *fp);
+void free_text(char** text, int N_lines);
+int count_lines(FILE *fp);
+void print_text_updated(char** text, int N_lines);
+char* my_str_dup(const char *str);
+
 
 
 
