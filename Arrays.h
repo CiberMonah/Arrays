@@ -5,6 +5,7 @@
 #include <string.h>
 #include <cstdio>
 #include <assert.h>
+#define Ptr(value) printf("%p\n", value);
 
 const unsigned int MAX_LEN_STR = 50;
 

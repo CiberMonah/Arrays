@@ -1,6 +1,5 @@
 #include "Arrays.h"
 #include <stdio.h>
-#define LOX(value, i) printf("string %d : %p\n", i, value);
 
 void print_text(const char data[][MAX_LEN_STR], size_t x) {
     assert(data != NULL);
@@ -101,12 +100,14 @@ int count_lines(FILE *fp) {
     for (c = getc(fp); c != EOF; c = getc(fp))
         if (c == '\n')
             counter++;
+    rewind(fp);
     return counter + 1;
 }
 
 void print_text_updated(char** text, int N_lines) {
     for(int i = 0; i < N_lines; i++) {
         assert(text[i] != NULL);
+        Ptr(text[i])
         printf("%s", text[i]);
     }
 }
@@ -116,6 +117,6 @@ char* my_str_dup(const char *str) {
     char* dup = (char*)calloc(i, sizeof(char));
     for (i = 0; str[i] != '\0'; i++)
         dup[i] = str[i];
-
+    dup[i + 1] = '\0';
     return dup;
 }
