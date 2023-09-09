@@ -107,7 +107,6 @@ int count_lines(FILE *fp) {
 void print_text_updated(char** text, int N_lines) {
     for(int i = 0; i < N_lines; i++) {
         assert(text[i] != NULL);
-        Ptr(text[i])
         printf("%s", text[i]);
     }
 }

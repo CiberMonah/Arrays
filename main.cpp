@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <locale.h>
 #include "Arrays.h"
 
 
 int main()
 {
-    FILE *fp;
+    FILE *fp = nullptr;
 
     if ((fp = fopen("poem.txt", "r")) == NULL) {
         printf("File didnt open");
@@ -36,4 +37,6 @@ int main()
     print_text_updated(text, num_of_lines);
 
     free_text(text, num_of_lines);
+
+    fclose(fp);
 }
