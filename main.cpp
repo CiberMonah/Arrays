@@ -32,21 +32,32 @@ int main()
     int num_of_lines = count_lines(fp); //reading number of lines
     char** text = (char**)calloc(num_of_lines, 8); //allocate memory for text array of pointers
     text[0] = buf; // set first pointer on first char of buf
-
+    /*for(size_t i = 0; i < size_of_file; i++)
+        buf[i] = tolower((char)buf[i]);*/
     int lines = 1;
 
     for(size_t i = 0; i < size_of_file; i++) { //run through all buf
-        if(buf[i] == '\n' || buf[i] == '\n')// if buf[i] == \n set next pointer of text on next line
+        if(buf[i] == '\n' || buf[i] == '\0')// if buf[i] == \n set next pointer of text on next line
             text[lines++] = buf + i + 1;
     }
 
-    my_super_print(text, num_of_lines);
+    replace_(buf, size_of_file + 1);
 
+    //char** text_sort = (char**)calloc(num_of_lines, 8);
 
 
     //my_super_print(text, num_of_lines);
+    //printf("%s", buf);
+    //qsort(text_sort, num_of_lines, sizeof(char*), compare);
 
+    //my_super_print(text_sort, num_of_lines);
+    /*for(int i = 0; i < num_of_lines; i++)
+        printf("%s", text[i]);*/
 
+    qsort(text, num_of_lines, sizeof(char*), compare);
+
+    for(int i = 0; i < num_of_lines; i++)
+        printf("%s", text[i]);
 
     free(buf);
     free(text);

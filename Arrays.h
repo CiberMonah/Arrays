@@ -5,6 +5,7 @@
 #include <string.h>
 #include <cstdio>
 #include <assert.h>
+#include <ctype.h>
 #define Ptr(value) printf("%p\n", value);
 
 const unsigned int MAX_LEN_STR = 50;
@@ -23,9 +24,8 @@ int count_lines(FILE *fp);
 void print_text_updated(char** text, int N_lines);
 char* my_str_dup(const char *str);
 void my_super_print(char** text, int num_of_lines);
-
-
-
-
+void replace_(char* buf, int size_);
+int compare(const void *s1, const void* s2);
+void swap_(char** ptr1, char** ptr2);
 
 #endif // ARRAYS_H_INCLUDED

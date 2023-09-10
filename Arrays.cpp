@@ -126,7 +126,27 @@ void my_super_print(char** text, int num_of_lines) {
     for(int j = 0; j < num_of_lines; j++)
         if(j == num_of_lines - 1)
             printf("%s", text[j]);
-        else
-            for(int i = 0; i < text[j+1] - text[j]; i++)
+        else {
+            for(int i = 0; i < text[j+1] - text[j]; i++) {
                 putchar(*(text[j] + i));
+                }
+            putchar('\n');
+            }
 }
+
+void replace_(char* buf, int size_) {
+    for(int i = 0 ; i < size_; i++)
+        if(buf[i] == '\n') buf[i] = '\0';
+}
+
+int compare(const void *s1, const void* s2) {
+    return strcmp((const char*)s1, (const char*)s2);
+}
+
+void swap_(char** ptr1, char** ptr2) {
+    char** temp = NULL;
+    temp = ptr2;
+    ptr2 = ptr1;
+    ptr1 = temp;
+}
+
