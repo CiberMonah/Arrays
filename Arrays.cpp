@@ -97,6 +97,8 @@ int count_lines(FILE *fp) {
     int counter = 0;
     int c;
 
+    rewind (fp);
+
     for (c = getc(fp); c != EOF; c = getc(fp))
         if (c == '\n')
             counter++;
@@ -118,4 +120,13 @@ char* my_str_dup(const char *str) {
         dup[i] = str[i];
     dup[i + 1] = '\0';
     return dup;
+}
+
+void my_super_print(char** text, int num_of_lines) {
+    for(int j = 0; j < num_of_lines; j++)
+        if(j == num_of_lines - 1)
+            printf("%s", text[j]);
+        else
+            for(int i = 0; i < text[j+1] - text[j]; i++)
+                putchar(*(text[j] + i));
 }

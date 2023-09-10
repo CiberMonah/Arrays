@@ -22,6 +22,7 @@ void free_text(char** text, int N_lines);
 int count_lines(FILE *fp);
 void print_text_updated(char** text, int N_lines);
 char* my_str_dup(const char *str);
+void my_super_print(char** text, int num_of_lines);
 
 
 

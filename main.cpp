@@ -2,16 +2,61 @@
 #include <locale.h>
 #include "Arrays.h"
 
+const char fname[] = "poem.txt";
 
 int main()
 {
     FILE *fp = nullptr;
+    unsigned long size_of_file = 0;
 
-    if ((fp = fopen("poem.txt", "r")) == NULL) {
+    if ((fp = fopen(fname, "r")) == NULL) {
         printf("File didnt open");
         getchar();
         return 0;
     }
+
+    //TEXT_5
+    fseek (fp, 0, SEEK_END);
+    size_of_file = ftell(fp);
+    rewind (fp);
+
+    //printf("Size of %s : %ld bytes.\n", fname, size_of_file);
+
+    char* buf = (char*)calloc(size_of_file + 1, sizeof(char));
+    if(buf == NULL) {
+        printf("Memory allocation error\n");
+    }
+
+    fread(buf, sizeof(char), size_of_file, fp);//reading buf
+
+    int num_of_lines = count_lines(fp); //reading number of lines
+    char** text = (char**)calloc(num_of_lines, 8); //allocate memory for text array of pointers
+    text[0] = buf; // set first pointer on first char of buf
+
+    int lines = 1;
+
+    for(size_t i = 0; i < size_of_file; i++) { //run through all buf
+        if(buf[i] == '\n' || buf[i] == '\n')// if buf[i] == \n set next pointer of text on next line
+            text[lines++] = buf + i + 1;
+    }
+
+    my_super_print(text, num_of_lines);
+
+
+
+    //my_super_print(text, num_of_lines);
+
+
+
+    free(buf);
+    free(text);
+    fclose(fp);
+
+
+
+    /* TEXT_4
+
+
     int num_of_lines = count_lines(fp);
 
     //   move cursor to the start of file
@@ -37,6 +82,6 @@ int main()
     print_text_updated(text, num_of_lines);
 
     free_text(text, num_of_lines);
-
     fclose(fp);
+    */
 }
