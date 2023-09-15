@@ -1,17 +1,11 @@
 #include <stdio.h>
 #include <locale.h>
 #include "Arrays.h"
-//#include "Sort.h"
 
 const char fname[] = "poem.txt";
 
 int main()
 {
-
-    /*int a[10] = {6, 9, 5, 7, 3, 1, 4, 2, 0, 8};*/
-    //bubble_sort_int(a, 10);
-    /*for(int i = 0; i < 10; i++)
-        printf("%d", a[i]);*/
     FILE *fp = nullptr;
     unsigned long size_of_file = 0;
 
@@ -54,50 +48,12 @@ int main()
         if(buf[i] == '\n' || buf[i] == '\0')// if buf[i] == \n set next pointer of text on next line
             text[lines++] = buf + i + 1;
     }
-    //my_super_print(text, num_of_lines);
 
-    //char** text_sort = (char**)calloc(num_of_lines, 8);
-
-    //swap_(&text[1], &text[0]);
-    qsort(text, num_of_lines, sizeof(char*), compare);
-
-    for(int i = 0; i < num_of_lines; i++) {
+    qsort(text, num_of_lines, sizeof(char*), compare_behind);
+    for(int i = 0; i < num_of_lines; i++)
         printf("%s\n", text[i]);
-    }
+
     free(*text);
     free(text);
     fclose(fp);
-
-
-
-    /* TEXT_4
-
-
-    int num_of_lines = count_lines(fp);
-
-    //   move cursor to the start of file
-
-    char** text = (char**)calloc(num_of_lines, 8);
-    if(text == nullptr) return 0;
-
-    char buf[50] = "";
-    //printf("Input adress and string\n");
-    for(int i = 0; i < num_of_lines; i++) {
-        fgets(buf, MAX_LEN_STR, fp);
-        //detecting error
-        text[i] = strdup(buf);
-        //printf("iter nu m : %d\n", i + 1);
-        //print_text_updated(text, i + 1);
-        //Ptr(text[i])
-        //printf("%s", text[i]);
-    }
-
-    //printf("\n\nPrinted text with adresses:\n");
-    //printf("Vne cycle:\n");
-    //printf("%s", text[0]);
-    print_text_updated(text, num_of_lines);
-
-    free_text(text, num_of_lines);
-    fclose(fp);
-    */
 }

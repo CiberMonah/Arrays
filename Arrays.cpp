@@ -144,6 +144,34 @@ int compare(const void *arg1, const void *arg2) {
    return strcmp(*(char**)arg1, *(char**)arg2);
 }
 
+static void str_rev(char *S)
+{
+    int i = 0,j = 0,l = 0;
+    char t = 0;
+    l = strlen(S);
+    i = 0;
+    j = l - 1;
+    while (i < j)
+    {
+        t = S[i];
+        S[i] = S[j];
+        S[j] = t;
+        i++;
+        j--;
+    }
+}
+
+int compare_behind(const void *arg1, const void *arg2) {
+    char* s1 = *(char**)arg1;
+    char* s2 = *(char**)arg2;
+    char* s1rev = strdup(s1);
+    char* s2rev = strdup(s2);
+    str_rev(s1rev);
+    str_rev(s2rev);
+
+    return strcmp(s1rev, s2rev);
+}
+
 
 void swap_(char** ptr1, char** ptr2) {
     char* temp = *ptr2;

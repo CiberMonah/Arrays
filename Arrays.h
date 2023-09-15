@@ -27,5 +27,9 @@ void my_super_print(char** text, int num_of_lines);
 void replace_(char* buf, int size_);
 void swap_(char** ptr1, char** ptr2);
 int compare(const void *arg1, const void *arg2);
+int compare_behind(const void *arg1, const void *arg2) ;
+void str_rev(char *S, char *S2);
+
+void print_reverse(char** text, int size_);
 
 #endif // ARRAYS_H_INCLUDED
