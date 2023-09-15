@@ -123,6 +123,7 @@ char* my_str_dup(const char *str) {
 }
 
 void my_super_print(char** text, int num_of_lines) {
+    assert(text != NULL);
     for(int j = 0; j < num_of_lines; j++)
         if(j == num_of_lines - 1)
             printf("%s", text[j]);
@@ -139,14 +140,13 @@ void replace_(char* buf, int size_) {
         if(buf[i] == '\n') buf[i] = '\0';
 }
 
-int compare(const void *s1, const void* s2) {
-    return strcmp((const char*)s1, (const char*)s2);
+int compare(const void *arg1, const void *arg2) {
+   return strcmp(*(char**)arg1, *(char**)arg2);
 }
+
 
 void swap_(char** ptr1, char** ptr2) {
-    char** temp = NULL;
-    temp = ptr2;
-    ptr2 = ptr1;
-    ptr1 = temp;
+    char* temp = *ptr2;
+    *ptr2 = *ptr1;
+    *ptr1 = temp;
 }
-

@@ -25,7 +25,7 @@ void print_text_updated(char** text, int N_lines);
 char* my_str_dup(const char *str);
 void my_super_print(char** text, int num_of_lines);
 void replace_(char* buf, int size_);
-int compare(const void *s1, const void* s2);
 void swap_(char** ptr1, char** ptr2);
+int compare(const void *arg1, const void *arg2);
 
 #endif // ARRAYS_H_INCLUDED
