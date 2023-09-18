@@ -2,7 +2,7 @@
 #include <locale.h>
 #include "Arrays.h"
 
-const char fname[] = "poem.txt";
+const char fname[] = "Onegin1.txt";
 
 int main()
 {
@@ -18,8 +18,6 @@ int main()
     fseek (fp, 0, SEEK_END);
     size_of_file = ftell(fp);
     rewind (fp);
-
-    //printf("Size of %s : %ld bytes.\n", fname, size_of_file);
 
     char* buf = (char*)calloc(size_of_file + 1, sizeof(char));
     if(buf == NULL) {
@@ -48,10 +46,30 @@ int main()
         if(buf[i] == '\n' || buf[i] == '\0')// if buf[i] == \n set next pointer of text on next line
             text[lines++] = buf + i + 1;
     }
+    printf("Type 1 to sort behind using qsort from stdlib\nType 2 to normal sort using qsort from stdlib\nType 3 to make poem\n");
 
-    qsort(text, num_of_lines, sizeof(char*), compare_behind);
-    for(int i = 0; i < num_of_lines; i++)
-        printf("%s\n", text[i]);
+    switch(getchar()) {
+    case '1':
+        qsort(text, num_of_lines, sizeof(char*), compare_behind);
+        for(int i = 0; i < num_of_lines; i++)
+            printf("%s\n", text[i]);
+        break;
+    case '2':
+        qsort(text, num_of_lines, sizeof(char*), compare);
+        for(int i = 0; i < num_of_lines; i++)
+            printf("%s\n", text[i]);
+        break;
+    case '3':
+        srand(time(NULL));
+        for(int i = 0; i < 5; i++) {
+            qsort(text, num_of_lines, sizeof(char*), compare_behind);
+            make_poem(text, num_of_lines);
+            printf("\n");
+        }
+        break;
+    default: break;
+    }
+
 
     free(*text);
     free(text);

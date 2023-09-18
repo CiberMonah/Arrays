@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <assert.h>
 #include <ctype.h>
+#include <time.h>
 #define Ptr(value) printf("%p\n", value);
 
 const unsigned int MAX_LEN_STR = 50;
@@ -29,6 +30,7 @@ void swap_(char** ptr1, char** ptr2);
 int compare(const void *arg1, const void *arg2);
 int compare_behind(const void *arg1, const void *arg2) ;
 void str_rev(char *S, char *S2);
+void make_poem(char** text, int lines);
 
 void print_reverse(char** text, int size_);
 
