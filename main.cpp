@@ -14,7 +14,6 @@ int main()
         return 0;
     }
 
-    //TEXT_5
     fseek (fp, 0, SEEK_END);
     size_of_file = ftell(fp);
     rewind (fp);
@@ -25,27 +24,25 @@ int main()
         return 0;
     }
 
-    fread(buf, sizeof(char), size_of_file, fp);//reading buf
-
-    int num_of_lines = count_lines(fp); //reading number of lines        //по  буферу пробежать replace
-
-    char** text = (char**)calloc(num_of_lines, 8); //allocate memory for text array of pointers
-
+    fread(buf, sizeof(char), size_of_file, fp);
+    int num_of_lines = count_lines(fp); 
+    char** text = (char**)calloc(num_of_lines, 8); 
     if(text == NULL) {
         printf("Memory allocation error\n");
     }
 
-    text[0] = buf; // set first pointer on first char of buf
-    /*for(size_t i = 0; i < size_of_file; i++)
-        buf[i] = tolower((char)buf[i]);*/
+    text[0] = buf;
     int lines = 1;
 
     replace_(buf, size_of_file + 1);
 
-    for(size_t i = 0; i < size_of_file; i++) { //run through all buf
-        if(buf[i] == '\n' || buf[i] == '\0')// if buf[i] == \n set next pointer of text on next line
+    for(size_t i = 0; i < size_of_file; i++) {
+        if(buf[i] == '\n' || buf[i] == '\0')
             text[lines++] = buf + i + 1;
     }
+
+    //Menu
+
     printf("Type 1 to sort behind using qsort from stdlib\nType 2 to normal sort using qsort from stdlib\nType 3 to make poem\n");
 
     switch(getchar()) {
@@ -69,7 +66,6 @@ int main()
         break;
     default: break;
     }
-
 
     free(*text);
     free(text);
