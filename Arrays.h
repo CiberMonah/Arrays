@@ -11,6 +11,7 @@
 
 const unsigned int MAX_LEN_STR = 50;
 
+void bubble_sort(void* text, int size_, int size_of_elem, int(*comparator)(const void*, const void*));
 void print_special_data(int *data);
 void print_text(const char data[][MAX_LEN_STR], unsigned int nums);
 void print_data_int(const int data[], unsigned int nums);
@@ -27,7 +28,7 @@ char* my_str_dup(const char *str);
 void my_super_print(char** text, int num_of_lines);
 void replace_(char* buf, int size_);
 void swap_(char** ptr1, char** ptr2);
-int compare(const void *arg1, const void *arg2);
+int compare_str(const void *arg1, const void *arg2);
 int compare_behind(const void *arg1, const void *arg2) ;
 void str_rev(char *S, char *S2);
 void make_poem(char** text, int lines);

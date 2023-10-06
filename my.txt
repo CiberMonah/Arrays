@@ -1,4 +1,6 @@
-1
-2 4
-3 18 -5
-23 44 -8 10
+a
+baba
+mama
+dede
+pepepr
+asdasd

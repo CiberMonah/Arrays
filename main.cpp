@@ -43,7 +43,8 @@ int main()
 
     //Menu
 
-    printf("Type 1 to sort behind using qsort from stdlib\nType 2 to normal sort using qsort from stdlib\nType 3 to make poem\n");
+    printf("Type 1 to sort behind using qsort from stdlib\nType 2 to normal sort using qsort from stdlib\nType 3 to make poem\n"
+        "Type 4 to use my sort and make poem\n");
 
     switch(getchar()) {
     case '1':
@@ -52,7 +53,7 @@ int main()
             printf("%s\n", text[i]);
         break;
     case '2':
-        qsort(text, num_of_lines, sizeof(char*), compare);
+        qsort(text, num_of_lines, sizeof(char*), compare_str);
         for(int i = 0; i < num_of_lines; i++)
             printf("%s\n", text[i]);
         break;
@@ -60,6 +61,14 @@ int main()
         srand(time(NULL));
         for(int i = 0; i < 5; i++) {
             qsort(text, num_of_lines, sizeof(char*), compare_behind);
+            make_poem(text, num_of_lines);
+            printf("\n");
+        }
+        break;
+    case '4':
+        srand(time(NULL));
+        for(int i = 0; i < 5; i++) {
+            bubble_sort(text, num_of_lines, sizeof(char*), compare_behind);
             make_poem(text, num_of_lines);
             printf("\n");
         }

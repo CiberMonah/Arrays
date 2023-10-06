@@ -7,7 +7,7 @@ void replace_(char* buf, int size_) {
         }
 }
 
-int compare(const void *arg1, const void *arg2) {
+int compare_str(const void *arg1, const void *arg2) {
    return strcmp(*(char**)arg1, *(char**)arg2);
 }
 
@@ -42,6 +42,31 @@ void swap_(char** ptr1, char** ptr2) {
     char* temp = *ptr2;
     *ptr2 = *ptr1;
     *ptr1 = temp;
+}
+
+
+static void swap(void *a, void *b, size_t size) {
+    char* tmp;
+    tmp = (char*) malloc(size);
+    memcpy(tmp, a, size);
+    memcpy(a, b, size);
+    memcpy(b, tmp, size);
+    free(tmp);
+}
+
+
+void bubble_sort(void* text, int size_, int size_of_elem, int(*comparator)(const void*, const void*)) {
+
+    for(int n = 0; n < size_; n++) {
+        int is_swap = 0;
+        for(int i = 0; i < size_ - 1 - n; i++)
+            if(comparator((char*)text + i * size_of_elem, (char*)text + (i + 1) * size_of_elem) == -1) {
+                swap((char*)text + i * size_of_elem, (char*)text + (i + 1) * size_of_elem, size_of_elem);
+                is_swap = 1;
+            }
+        if(is_swap == 0)
+            break;
+    }
 }
 
 void make_poem(char** text, int lines) {
